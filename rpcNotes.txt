@@ -1,0 +1,25 @@
+JSON-RPC notes
+GET requests
+	url: http://<ip>:<port>/jsonrpc?request={}
+	JSON request must be made within the URL itself
+	EXAMPLE (Gets the Title/Album/Artist of the current item playing)
+		GET /jsonrpc?request={"jsonrpc":"2.0", "method": "Player.GetItem", "params": { "playerid" : 0, "properties" : ["title", "album", "artist"]}, "id":1} HTTP/1.1
+		Host: 192.168.1.103
+		Cache-Control: no-cache
+
+	
+POST requests
+	url: http://<ip>:<port>/jsonrpc
+	Content-Type: application/json
+	JSON request must be made in the body of the POST.
+	EXAMPLE (Stops the current playing item)
+		POST /jsonrpc HTTP/1.1
+		Host: 192.168.1.103
+		Content-Type: application/json
+		Cache-Control: no-cache
+		{"jsonrpc":"2.0", "method": "Player.Stop", "params": { "playerid": 0}, "id": 1}
+	
+Player IDs
+0 - Audio
+1 - Video
+2 - Picture
